@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.sprite{
+background-color : yellowGreen;
+}
+</style>
 </head>
 <body>
+<div th:text="${#request.contextPath}">컨택스트패스</div>
+[[${#request.contextPath}]]
+<!-- 리스트 forEach걍 쓸 수 있 -->
+<!--/* <th:block th:each="emp : ${empList}">  
+ [[${emp.firstName}]]
+ </th:block> */-->
+ properties : [[#{site.upload}]] <br>
+ <span th:utext="${'<font color=red>test</font>'}"></span>
+ [{<font color=red>test</font>}]
+전체 사원수 : <span th:text="${#lists.size(empList)}">10명</span>
 <table>
- <tr>
+ <tr >
  <th>employee_id</th>
  <th>first_name</th>
  <th>last_name</th>
  </tr>
-<tr th:each="emp : ${empList}">
+<!--  삼항연산자 사용,홀수번 일 때만 색깔 입힘 -->
+<!-- <tr th:each="emp,st : ${empList}" th:class="${empStat.odd}?sprite:_"> -->
+<!--  <td th:text="${st.count}" style="width:5px;"></td> -->
+<tr th:each="emp : ${empList}" th:class="${empStat.odd}?sprite:_">
+ <td th:text="${empStat.index}" ></td>
+ <td th:text="${empStat.count}" ></td>
  <td th:text="${emp.employeeId}"></td>
+ <td><a  th:text="${emp.firstName}" th:href="@{update(empid=${emp.employeeId},fname=${emp.firstName})}">사원명</a>
+ <a th:text="${emp.firstName}" th:href="'update?empid='+${emp.employeeId}">사원명</a>
+ <a th:text="${emp.firstName}" th:href="|update?empid=${emp.employeeId}|">사원명</a></td>
  <td th:text="${emp.firstName}"></td>
  <td th:text="${emp.lastName}"></td>
- <td th:text="${emp.hireDate}"></td>
- </tr>
+<!--  날짜 포맷 -->
+ <td th:text="${#dates.format(emp.hireDate,'yyyy-MM-dd')}"></td>
+<!--  숫자에 콤마 -->
+ <td th:text="${#numbers.formatInteger(emp.salary,3,'COMMA')}"></td>
+ 
+ <td th:text="${#numbers.formatCurrency(emp.salary)}"></td>
+ <td><button th:if="${emp.salary}>10000">수정</button></td>
+</tr>
 </table>
 </body>
 </html>
