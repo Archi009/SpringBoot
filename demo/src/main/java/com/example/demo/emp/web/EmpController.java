@@ -15,12 +15,12 @@ public class EmpController {
 	@Autowired
 	EmpMapper emp;
 	
-	@GetMapping("/")
-	@ResponseBody
-	public String main() {
-		return "hello";
-	}
-	
+//	@GetMapping("/")
+//	@ResponseBody
+//	public String main() {
+//		return "hello";
+//	}
+//	
 	
 	//사원 전체 조회
 	@GetMapping("/getEmpList")

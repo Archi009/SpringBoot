@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+  	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ 	  layout:decorate="~{template/layout}">
 <head>
 
 <meta charset="UTF-8">
@@ -11,6 +13,7 @@ background-color : yellowGreen;
 </style>
 </head>
 <body>
+<div layout:fragment="content">
 <div th:text="${#request.contextPath}">컨택스트패스</div>
 [[${#request.contextPath}]]
 <!-- 리스트 forEach걍 쓸 수 있 -->
@@ -18,8 +21,8 @@ background-color : yellowGreen;
  [[${emp.firstName}]]
  </th:block> */-->
  properties : [[#{site.upload}]] <br>
- <span th:utext="${'<font color=red>test</font>'}"></span>
- [{<font color=red>test</font>}]
+ <span th:utext="${'<font color=red>test</font>'}"></span> <br>
+ [(${<font color=red>test</font>})] <br>
 전체 사원수 : <span th:text="${#lists.size(empList)}">10명</span>
 <table>
  <tr >
@@ -48,5 +51,6 @@ background-color : yellowGreen;
  <td><button th:if="${emp.salary}>10000">수정</button></td>
 </tr>
 </table>
+</div>
 </body>
 </html>
