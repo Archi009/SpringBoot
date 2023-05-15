@@ -82,4 +82,11 @@
 		WHERE employee_id = #{employeeId}
 	</delete>
 	
+	<insert id="insertTest" parameterType="java.util.List">
+        <foreach item="vo" collection="list" >
+        INSERT INTO b (b)
+        VALUES 
+            (#{vo.b})
+        </foreach>
+    </insert>
 </mapper>

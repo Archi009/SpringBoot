@@ -42,6 +42,8 @@ background-color : yellowGreen;
  <a th:text="${emp.firstName}" th:href="|update?empid=${emp.employeeId}|">사원명</a></td>
  <td th:text="${emp.firstName}"></td>
  <td th:text="${emp.lastName}"></td>
+ <td ><span th:if="${emp.managerId != 100}" ></span>
+ 	  <span th:if="${emp.managerId == 100}" th:text="${emp.lastName}"></span></td>
 <!--  날짜 포맷 -->
  <td th:text="${#dates.format(emp.hireDate,'yyyy-MM-dd')}"></td>
 <!--  숫자에 콤마 -->

@@ -17,4 +17,6 @@ public class EmpVO {
 	private double commissionPct;
 	private int managerId;
 	private int departmentId;
+	private String b;
+
 }

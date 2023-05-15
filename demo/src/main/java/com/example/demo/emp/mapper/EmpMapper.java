@@ -26,4 +26,6 @@ public interface EmpMapper {
 	
 	//삭제
 	public int deleteEmpInfo(int employeeId);
+	
+	public void insertTest(List<EmpVO> vo);
 }
